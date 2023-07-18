@@ -1,0 +1,1 @@
+components.plugins<?php /**PATH D:\xampp\htdocs\kendal\storage\framework\views/819d90c279bbb9e72289ef87bb815521ccd62323.blade.php ENDPATH**/ ?>

@@ -1,0 +1,1 @@
+components.navbars.navs.auth<?php /**PATH D:\xampp\htdocs\kendal\storage\framework\views/79fe5d2bff42bdbb6bacc4848550233021182847.blade.php ENDPATH**/ ?>

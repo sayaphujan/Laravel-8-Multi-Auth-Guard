@@ -1,0 +1,1 @@
+components.footers.guest<?php /**PATH D:\xampp\htdocs\kendal\storage\framework\views/afef3322241b6737c0f9e2ec246c57811645417b.blade.php ENDPATH**/ ?>
