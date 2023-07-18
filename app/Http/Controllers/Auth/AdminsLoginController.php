@@ -32,12 +32,10 @@ class AdminsLoginController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -62,12 +60,10 @@ class AdminsLoginController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -107,7 +103,7 @@ class AdminsLoginController extends Controller
 
         $data = $request->toArray();
 
-        if ($validator->fails()) {
+        /*if ($validator->fails()) {
 
             if($data['password'] == $data['password_confirmation'])
             {
@@ -119,9 +115,9 @@ class AdminsLoginController extends Controller
             }
         }
         else
-        {
+        {*/
             $insert = $this->tb_admin->store($data);
-        }
+        //}
 
         if($insert)
         {
@@ -137,12 +133,10 @@ class AdminsLoginController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -158,12 +152,10 @@ class AdminsLoginController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -190,7 +182,7 @@ class AdminsLoginController extends Controller
         $data['photo']= $filename;
         //dd($data);
 
-        if ($validator->fails()) {
+        /*if ($validator->fails()) {
 
             if($data['password'] == $data['password_confirmation'])
             {
@@ -202,9 +194,9 @@ class AdminsLoginController extends Controller
             }
         }
         else
-        {
+        {*/
             $update = $this->tb_admin->modify($data, $id);
-        }
+        //}
 
         if($update)
         {

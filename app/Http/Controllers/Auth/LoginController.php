@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Customer;
 use App\Models\Admin;
-use App\Models\Owner;
-use App\Models\Officer;
+use App\Models\Driver;
 use Auth;
 
 class LoginController extends Controller
@@ -56,7 +55,7 @@ class LoginController extends Controller
             $password = $request->password;
         
         
-        $check = User::where('name',$uname)->first();
+        $check = Customer::where('name',$uname)->first();
 
         if ( !$check ) {
             return redirect('/masuk/')->withError(__('Username tidak terdaftar.'));
@@ -92,12 +91,10 @@ class LoginController extends Controller
         $password = $request->password;
         $data = array();
 
-        $checkU = User::select('*')->where('name',$username)->where('plain_password',$password)->count();
+        $checkU = Customer::select('*')->where('name',$username)->where('plain_password',$password)->count();
         if($checkU == 0){
-            $checkD = Officer::select('*')->where('name',$username)->where('plain_password',$password)->count();
+            $checkD = Driver::select('*')->where('name',$username)->where('plain_password',$password)->count();
             if($checkD == 0){
-                $checkO = Owner::select('*')->where('name',$username)->where('plain_password',$password)->count();
-                if($checkO == 0){
                     $checkA = Admin::select('*')->where('name',$username)->where('plain_password',$password)->count();
                     if($checkA == 0){
 
@@ -105,12 +102,10 @@ class LoginController extends Controller
                                 $this->guard()->logout();            
                             } elseif (Auth::guard('admin')->check()) {
                                 Auth::guard('admin')->logout();
-                            } elseif (Auth::guard('user')->check()) {
-                                Auth::guard('user')->logout();
-                            } elseif (Auth::guard('owner')->check()) {
-                                Auth::guard('owner')->logout();
-                            } elseif (Auth::guard('officer')->check()) {
-                                Auth::guard('officer')->logout();
+                            } elseif (Auth::guard('customer')->check()) {
+                                Auth::guard('customer')->logout();
+                            } elseif (Auth::guard('driver')->check()) {
+                                Auth::guard('driver')->logout();
                             } else {
                                 $this->middleware('guest')->except('logout');
                             }
@@ -128,24 +123,17 @@ class LoginController extends Controller
                                 return redirect()->route('home');
                         }
                     }
-                }else{
-                     if (Auth::guard('owner')->attempt(array('name' => $request->name, 'password' => $request->password))) {
-                                // Authentication passed
-                                $request->session()->put('level',auth('owner')->user()->level);
-                                return redirect()->route('home');
-                        }
-                }
             }else{
-                 if (Auth::guard('officer')->attempt(array('name' => $request->name, 'password' => $request->password))) {
+                 if (Auth::guard('driver')->attempt(array('name' => $request->name, 'password' => $request->password))) {
                                 // Authentication passed
-                                $request->session()->put('level',auth('officer')->user()->level);
+                                $request->session()->put('level',auth('driver')->user()->level);
                                 return redirect()->route('home');
                         }
             }
         }else{
-            if (Auth::guard('user')->attempt(array('name' => $request->name, 'password' => $request->password))) {
+            if (Auth::guard('customer')->attempt(array('name' => $request->name, 'password' => $request->password))) {
                                 // Authentication passed
-                                $request->session()->put('level',auth('user')->user()->level);
+                                $request->session()->put('level',auth('customer')->user()->level);
                                 return redirect()->route('portal');
                         }
         }
@@ -164,12 +152,12 @@ class LoginController extends Controller
             $this->guard()->logout();            
         } elseif (Auth::guard('admin')->check()) {
             Auth::guard('admin')->logout();
-        } elseif (Auth::guard('user')->check()) {
-            Auth::guard('user')->logout();
+        } elseif (Auth::guard('customer')->check()) {
+            Auth::guard('customer')->logout();
         } elseif (Auth::guard('owner')->check()) {
             Auth::guard('owner')->logout();
-        } elseif (Auth::guard('officer')->check()) {
-            Auth::guard('officer')->logout();
+        } elseif (Auth::guard('driver')->check()) {
+            Auth::guard('driver')->logout();
         } else {
             $this->middleware('guest')->except('logout');
         }

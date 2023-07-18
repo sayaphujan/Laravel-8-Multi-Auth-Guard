@@ -63,7 +63,7 @@ select[readonly] {
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Simpan</button>
-                        <a href="{{ route('officers')}}">
+                        <a href="{{ route('prices')}}">
                             <button type="button" class="btn btn-default float-right">Batal</button>                           
                         </a>
                     </div>

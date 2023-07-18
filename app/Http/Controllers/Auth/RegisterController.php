@@ -8,14 +8,14 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 use Auth;
 
 class RegisterController extends Controller
 {
-    protected $tb_user;
+    protected $tb_customer;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -44,7 +44,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->tb_user = new User();
+        $this->tb_customer = new Customer();
     }
 
     protected function create(Request $request)
@@ -68,13 +68,13 @@ class RegisterController extends Controller
 
         $data = $request->toArray();
 
-        $validator = Validator::make($data, $rules, $messages);
+        //$validator = Validator::make($data, $rules, $messages);
 
-        if ($validator->fails()) {
+        /*if ($validator->fails()) {
 
             if($data['password'] == $data['password_confirmation'])
             {
-                $insert = $this->tb_user->store($data);
+                $insert = $this->tb_customer->store($data);
             }
             else
             {
@@ -82,18 +82,18 @@ class RegisterController extends Controller
             }
         }
         else
-        {
-            $insert = $this->tb_user->store($data);
-        }
+        {*/
+            $insert = $this->tb_customer->store($data);
+        //}
 
         if($insert)
         {
-            if(Auth::attempt(array('name' => $insert['name'], 'password' => $insert['password'])))
+            if(Auth::guard('customer')->attempt(array('name' => $insert['name'], 'password' => $insert['password'])))
             {
-                if (Auth::user()->level > 0) {
-                   $request->session()->put('level',auth()->user()->level);
-                    return redirect()->route('home');
-                }else{
+                   $request->session()->put('level',auth('customer')->user()->level);
+                    return redirect()->route('portal');
+                
+            }else{
                      $this->guard()->logout();
  
                     $request->session()->flush();
@@ -102,8 +102,6 @@ class RegisterController extends Controller
                     
                     return redirect($url)->withError(__('Maaf, Anda tidak dikenal'));    
                 }
-                
-            }
 
         }
     }
@@ -112,7 +110,7 @@ class RegisterController extends Controller
     {
         //echo 'CHECK';
         $request = $request->all();
-        $check = $this->tb_user->check($request);
+        $check = $this->tb_customer->check($request);
         return response()->json($check);
     }
 }

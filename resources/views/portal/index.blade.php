@@ -302,7 +302,7 @@ input[readonly] {
                   </div>
                 </div>
                 @endif
-                <div class="row mt-3 mb-3">
+                <div class="row mt-3 mb-3" style="display:none">
                   <div class="col-md-6">
                     <label class="label" for="#">Latitude</label>
                     <input type="text" class="form-control" name="address_latitude" id="address-latitude" value="0" readonly="readonly" />

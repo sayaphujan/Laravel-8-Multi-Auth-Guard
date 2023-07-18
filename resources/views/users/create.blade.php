@@ -1,18 +1,36 @@
 @extends('layouts.adminlte.layout')
   
 @section('content')
+@php
+                            $url= '';
+                            $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+                            $uri_segments = explode('/', $uri_path);
+                            $url = $uri_segments[1];
+
+                            if($url == 'customers'){
+                                $readonly = 'readonly="readonly"';
+                                $selected = 'selected';
+                            }else{
+                                $readonly = '';
+                                $selected = '';
+                            }
+                        @endphp
 <style type="text/css">
 label {
     font-weight: 500!important;
 }    
-
+select[readonly] {
+  background: #eee; /*Simular campo inativo - Sugestão @GabrielRodrigues*/
+  pointer-events: none;
+  touch-action: none;
+}  
 </style>
 <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">{{ __('Tambah Data Pengguna') }}</h1>
+            <h1 class="m-0">{{ __('Tambah Data Pelangan') }}</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
@@ -20,7 +38,7 @@ label {
     <section class="content">
         <div class="card card-outline card-info">
             <div class="card-header"></div>
-                <form method="post" action="{{ route('users.store') }}" id="myForm" class="form-horizontal"  enctype="multipart/form-data">
+                <form method="post" action="{{ route('customers.store') }}" id="myForm" class="form-horizontal"  enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
 
@@ -87,7 +105,7 @@ label {
                                     @enderror
                                 </div>
                             </div>
-<!--
+
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label">{{ __('No. Telepon') }}</label>
 
@@ -115,16 +133,15 @@ label {
                                     @enderror
                                 </div>
                             </div>
--->
+
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label">{{ __('Hak Akses') }}</label>
                         
                                 <div class="col-md-6">
-                                    <select name="level" class="form-control" id="level" aria-describedby="level">
+                                    <select name="level" class="form-control" id="level" aria-describedby="level" {{ $readonly }}>
                                         <option value="">-- Pilih Disini --</option>
                                         <option value="1">Admin</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3">User</option>
+                                        <option value="3" {{ $selected }}>Pelanggan</option>
                                         <option value="4">Petugas Pengiriman</option>
                                     </select>    
 
@@ -149,7 +166,7 @@ label {
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Simpan</button>
-                        <a href="{{ route('users')}}">
+                        <a href="{{ route('customers')}}">
                             <button type="button" class="btn btn-default float-right">Batal</button>                           
                         </a>
                     </div>
@@ -199,7 +216,7 @@ $(document).ready(function () {
          $.ajax({
                   url: "{{ route('exist') }}",
                   type: 'post',
-                  data: { key : val, "_token": "{{ csrf_token() }}"},
+                  data: { key : val, url:'{{ $url }}',"_token": "{{ csrf_token() }}"},
                   success: function(response)
                   {
                     //console.log(response);

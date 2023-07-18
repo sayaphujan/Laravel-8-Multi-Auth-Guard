@@ -1,6 +1,12 @@
 @extends('layouts.adminlte.layout')
   
 @section('content')
+ @php
+                            $url= '';
+                            $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+                            $uri_segments = explode('/', $uri_path);
+                            $url = $uri_segments[1];
+                        @endphp
 <style type="text/css">
 label {
     font-weight: 500!important;
@@ -130,8 +136,7 @@ select[readonly] {
                                     <select name="level" class="form-control" id="level" aria-describedby="level" readonly>
                                         <option value="">-- Pilih Disini --</option>
                                         <option value="1" selected>Admin</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3">User</option>
+                                        <option value="3">Pelanggan</option>
                                         <option value="4">Driver</option>
                                     </select>    
 
@@ -196,7 +201,7 @@ $(document).ready(function () {
          $.ajax({
                   url: "{{ route('exist') }}",
                   type: 'post',
-                  data: { key : val, "_token": "{{ csrf_token() }}"},
+                  data: { key : val, url : '{{ $url }}', "_token": "{{ csrf_token() }}"},
                   success: function(response)
                   {
                     //console.log(response);

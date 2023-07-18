@@ -32,12 +32,10 @@ class BankController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -62,12 +60,10 @@ class BankController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -124,12 +120,10 @@ class BankController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -146,12 +140,10 @@ class BankController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }

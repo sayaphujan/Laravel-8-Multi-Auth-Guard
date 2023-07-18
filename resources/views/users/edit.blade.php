@@ -1,6 +1,7 @@
 @extends('layouts.adminlte.layout')
   
 @section('content')
+
 <style type="text/css">
 label {
     font-weight: 500!important;
@@ -17,7 +18,7 @@ select[readonly] {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">{{ __('Edit Data Pengguna') }}</h1>
+            <h1 class="m-0">{{ __('Edit Data Pelanggan') }}</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div>
@@ -32,7 +33,7 @@ select[readonly] {
                                         if($uri_segments[1] == 'profile'){
                                             $url = "profile";
                                         }else {
-                                            $url = "users";
+                                            $url = "customers";
                                         }
                                     }
                         @endphp
@@ -173,8 +174,7 @@ select[readonly] {
                                 <div class="col-md-6">
                                     <select name="level" class="form-control" id="level" aria-describedby="level">
                                         <option value="1" {{ $user->level == '1' ? 'selected' : ''}}>Admin</option>
-                                        <option value="2" {{ $user->level == '2' ? 'selected' : ''}}>Owner</option>
-                                        <option value="3" {{ $user->level == '3' ? 'selected' : ''}}>User</option>
+                                        <option value="3" {{ $user->level == '3' ? 'selected' : ''}}>Pelanggan</option>
                                         <option value="4" {{ $user->level == '4' ? 'selected' : ''}}>Petugas Pengiriman</option>
                                     </select>    
                                
@@ -207,7 +207,7 @@ select[readonly] {
                   </div>
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Simpan</button>
-                    <a href="{{ route('users')}}">
+                    <a href="{{ route('customers')}}">
                         <button type="button" class="btn btn-default float-right">Batal</button>                
                     </a>
                   </div>
@@ -265,7 +265,7 @@ $(document).ready(function () {
          $.ajax({
                   url: "{{ route('exist') }}",
                   type: 'post',
-                  data: { key : val, "_token": "{{ csrf_token() }}"},
+                  data: { key : val, 'url': '{{ $url }}', "_token": "{{ csrf_token() }}"},
                   success: function(response)
                   {
                     //console.log(response);

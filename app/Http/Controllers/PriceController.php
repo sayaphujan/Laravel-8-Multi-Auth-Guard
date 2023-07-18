@@ -27,17 +27,15 @@ class PriceController extends Controller
      */
     public function index(Request $request)
     {
-         if (Auth::check()) {
+        if (Auth::check()) {
             $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -57,21 +55,18 @@ class PriceController extends Controller
 
     public function create()
     {
-         if (Auth::check()) {
+        if (Auth::check()) {
             $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
-
 
         return view('prices.create',compact('guard'));
     }
@@ -120,17 +115,15 @@ class PriceController extends Controller
 
     public function edit($id)
     {
-         if (Auth::check()) {
+        if (Auth::check()) {
             $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -176,6 +169,6 @@ class PriceController extends Controller
     {
         $price = $this->tb_price->getprice($id);
 
-        return responnse()->json($price);
+        return response()->json($price);
     }
 }

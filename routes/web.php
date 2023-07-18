@@ -5,13 +5,10 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\UsersLoginController;
 use App\Http\Controllers\Auth\AdminsLoginController;
-use App\Http\Controllers\Auth\OwnersLoginController;
-use App\Http\Controllers\Auth\DriversLoginController;
 
 /*
 
@@ -32,15 +29,6 @@ use App\Http\Controllers\Auth\DriversLoginController;
 	Route::get('/admins/edit/{id}', [App\Http\Controllers\Auth\AdminsLoginController::class, 'edit'])->name('admins.edit');
 	Route::put('/admins/update/{id}', [App\Http\Controllers\Auth\AdminsLoginController::class, 'update'])->name('admins.update');
 	Route::get('/admins/destroy/{id}', [App\Http\Controllers\Auth\AdminsLoginController::class, 'destroy'])->name('admins.destroy');
-
-	Route::get('/owners', [App\Http\Controllers\Auth\OwnersLoginController::class, 'index'])->name('owners');
-	Route::get('/owners/create/', [App\Http\Controllers\Auth\OwnersLoginController::class, 'create'])->name('owners.create');
-	Route::post('/owners/store/', [App\Http\Controllers\Auth\OwnersLoginController::class, 'store'])->name('owners.store');
-	Route::get('/owners/show/{id}', [App\Http\Controllers\Auth\OwnersLoginController::class, 'show'])->name('owners.show');
-	Route::get('/owners/edit/{id}', [App\Http\Controllers\Auth\OwnersLoginController::class, 'edit'])->name('owners.edit');
-	Route::put('/owners/update/{id}', [App\Http\Controllers\Auth\OwnersLoginController::class, 'update'])->name('owners.update');
-	Route::get('/owners/destroy/{id}', [App\Http\Controllers\Auth\OwnersLoginController::class, 'destroy'])->name('owners.destroy');
-
 
 Auth::routes();
 
@@ -71,29 +59,30 @@ Route::get('/getprice/{id}', [App\Http\Controllers\MainController::class, 'getpr
 Route::post('pesan', [App\Http\Controllers\MainController::class, 'pesan'])->name('pesan');
 Route::get('notif', [App\Http\Controllers\MainController::class, 'notif'])->name('notif');
 Route::post('pay', [App\Http\Controllers\MainController::class, 'pay'])->name('pay');
+
 Route::get('/profile/{id}', [App\Http\Controllers\UserController::class, 'profile_show'])->name('profile');
 Route::get('/profile/edit/{id}', [App\Http\Controllers\UserController::class, 'profile_edit'])->name('profile.edit');
 Route::put('/profile/update/{id}', [App\Http\Controllers\UserController::class, 'profile_update'])->name('profile.update');
 Route::get('/profile/destroy/{id}', [App\Http\Controllers\UserController::class, 'profile_destroy'])->name('profile.destroy');
-
-/* USER */
 Route::post('exist', [App\Http\Controllers\UserController::class, 'check'])->name('exist');
-Route::get('users',  [App\Http\Controllers\UserController::class, 'index'])->name('users');
-Route::get('/users/create/', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
-Route::post('/users/store/', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
-Route::get('/users/show/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
-Route::get('/users/edit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
-Route::get('/users/destroy/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 
-/* Officer */
-Route::get('/officers',  [App\Http\Controllers\OfficerController::class, 'index'])->name('officers');
-Route::get('/officers/create/', [App\Http\Controllers\OfficerController::class, 'create'])->name('officers.create');
-Route::post('/officers/store/', [App\Http\Controllers\OfficerController::class, 'store'])->name('officers.store');
-Route::get('/officers/show/{id}', [App\Http\Controllers\OfficerController::class, 'show'])->name('officers.show');
-Route::get('/officers/edit/{id}', [App\Http\Controllers\OfficerController::class, 'edit'])->name('officers.edit');
-Route::put('/officers/update/{id}', [App\Http\Controllers\OfficerController::class, 'update'])->name('officers.update');
-Route::get('/officers/destroy/{id}', [App\Http\Controllers\OfficerController::class, 'destroy'])->name('officers.destroy');
+/* CUSTOMER */
+Route::get('customers',  [App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
+Route::get('/customers/create/', [App\Http\Controllers\CustomerController::class, 'create'])->name('customers.create');
+Route::post('/customers/store/', [App\Http\Controllers\CustomerController::class, 'store'])->name('customers.store');
+Route::get('/customers/show/{id}', [App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show');
+Route::get('/customers/edit/{id}', [App\Http\Controllers\CustomerController::class, 'edit'])->name('customers.edit');
+Route::put('/customers/update/{id}', [App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
+Route::get('/customers/destroy/{id}', [App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy');
+
+/* Driver */
+Route::get('/drivers',  [App\Http\Controllers\DriverController::class, 'index'])->name('drivers');
+Route::get('/drivers/create/', [App\Http\Controllers\DriverController::class, 'create'])->name('drivers.create');
+Route::post('/drivers/store/', [App\Http\Controllers\DriverController::class, 'store'])->name('drivers.store');
+Route::get('/drivers/show/{id}', [App\Http\Controllers\DriverController::class, 'show'])->name('drivers.show');
+Route::get('/drivers/edit/{id}', [App\Http\Controllers\DriverController::class, 'edit'])->name('drivers.edit');
+Route::put('/drivers/update/{id}', [App\Http\Controllers\DriverController::class, 'update'])->name('drivers.update');
+Route::get('/drivers/destroy/{id}', [App\Http\Controllers\DriverController::class, 'destroy'])->name('drivers.destroy');
 
 /* BANK */
 Route::get('banks',  [App\Http\Controllers\BankController::class, 'index'])->name('banks');

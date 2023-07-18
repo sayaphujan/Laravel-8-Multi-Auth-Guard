@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Customer;
 use App\Models\Price;
 use App\Models\Trans;
 use App\Models\Bank;
-use App\Models\Officer;
+use App\Models\Driver;
 use DataTables;
 use Auth;
 use \Mpdf\Mpdf as PDF; 
@@ -19,19 +19,20 @@ use Carbon\Carbon;
 
 class TransController extends Controller
 {
-    protected $tb_user;
+    protected $tb_customer;
     protected $tb_price;
     protected $tb_trans;
     protected $tb_bank;
+    protected $tb_driver;
 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
         $this->tb_trans = new Trans();
-        $this->tb_user = new User();
+        $this->tb_customer = new Customer();
         $this->tb_price = new Price(); 
         $this->tb_bank = new Bank(); 
-        $this->tb_officer = new Officer(); 
+        $this->tb_driver = new Driver(); 
     
     }
 
@@ -42,17 +43,15 @@ class TransController extends Controller
      */
     public function index(Request $request)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -84,17 +83,15 @@ class TransController extends Controller
 
     public function paid(Request $request)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -124,17 +121,15 @@ class TransController extends Controller
 
     public function unpaid(Request $request)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -165,17 +160,15 @@ class TransController extends Controller
 
     public function unverified(Request $request)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -206,17 +199,15 @@ class TransController extends Controller
 
     public function sent(Request $request)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -244,17 +235,15 @@ class TransController extends Controller
 
     public function unsent(Request $request)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -282,17 +271,15 @@ class TransController extends Controller
 
     public function detail($order_id)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }
@@ -301,24 +288,22 @@ class TransController extends Controller
         $bank = $this->tb_bank->select_all();
         $trans = $this->tb_trans->select_join($order_id);
         $kurir = $this->tb_trans->select_kurir($order_id);
-        $petugas = $this->tb_officer->select_all_driver();
+        $petugas = $this->tb_driver->select_all_driver();
         //dd($petugas);
         return view('trans.detail', compact('trans','guard','price','bank','petugas','kurir'));
     }
 
     public function print($order_id)
     {
-         if (Auth::check()) {
-            $guard = $guard;
+        if (Auth::check()) {
+            $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }

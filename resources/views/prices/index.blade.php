@@ -148,7 +148,7 @@
               if(isAdmin == 1){
                 return  '<div style="text-align: center">' + 
                           '<a class="Edit" href="prices/edit/'+row.price_id+'" style="color:#007bff"><i class="fas fa-pen" title="Edit"></i></a> &nbsp; ' + 
-                          '<a class="delete" href="prices/destroy/'+row.price_id+'" onclick="return confirm(\'Apakah yakin akan menghapus data '+row.price_name+'\')" style="color:#dc3545"><i class="fas fa-trash" title="Hapus"></i></a>';    
+                          '<a class="delete" href="prices/destroy/'+row.price_id+'" onclick="return confirm(\'Apakah yakin akan menghapus data '+row.price_volume+'\')" style="color:#dc3545"><i class="fas fa-trash" title="Hapus"></i></a>';    
               }else{
                 return '<div><i class="fas fa-pen" title="Edit"></i>&nbsp;<i class="fas fa-trash" title="Hapus"></i></div>';
               }

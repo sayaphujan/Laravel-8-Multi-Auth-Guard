@@ -531,74 +531,82 @@ $(document).ready(function () {
 });
 </script>
 <script>
-  let map, infoWindow;
+  let map, infoWindow, marker;
+
 function initMap() {
-    var myLatLng = {lat: -6.922237839463699, lng: 110.20010403863363};
-  
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: myLatLng,
-      zoom: 20
-    });
+  var myLatLng = { lat: -6.922237839463699, lng: 110.20010403863363 };
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Pin Me!',
-          draggable: true,
-        });
-  
-     google.maps.event.addListener(marker, 'dragend', function(marker) {
-        var latLng = marker.latLng;
-        $('#address-latitude').val(latLng.lat());
-        $('#address-longitude').val(latLng.lng());
-     });
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLng,
+    zoom: 20
+  });
 
-     infoWindow = new google.maps.InfoWindow();
+  infoWindow = new google.maps.InfoWindow();
 
-    const locationButton = document.createElement("button");
+  const locationButton = document.createElement('button');
+  locationButton.textContent = 'Klik untuk menemukan lokasi saya';
+  locationButton.classList.add('custom-map-control-button');
+  locationButton.setAttribute('type', 'button');
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  locationButton.addEventListener('click', () => {
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
 
-    locationButton.textContent = "Klik untuk menemukan lokasi saya";
-    locationButton.classList.add("custom-map-control-button");
-    locationButton.setAttribute("type", "button");
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-    locationButton.addEventListener("click", () => {
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
+          if (marker) {
+            // Marker already exists, update its position
+            marker.setPosition(pos);
+          } else {
+            // Marker doesn't exist, create a new one
+            marker = new google.maps.Marker({
+              position: pos,
+              map: map,
+              title: 'Lokasi ditemukan',
+              draggable: true
+            });
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent("Location found.");
-            infoWindow.open(map);
-            map.setCenter(pos);
-          },
-          () => {
-            handleLocationError(true, infoWindow, map.getCenter());
+            google.maps.event.addListener(marker, 'dragend', function () {
+              var latLng = marker.getPosition();
+              $('#address-latitude').val(latLng.lat());
+              $('#address-longitude').val(latLng.lng());
+            });
           }
-        );
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-      }
 
-    });
+          infoWindow.open(map);
+          map.setCenter(pos);
+
+            // Store latitude and longitude values in the input fields
+            $('#address-latitude').val(pos.lat);
+            $('#address-longitude').val(pos.lng);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(
-          browserHasGeolocation
-            ? "Error: The Geolocation service failed."
-            : "Error: Your browser doesn't support geolocation."
-        );
-        infoWindow.open(map);
-      }
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? 'Error: The Geolocation service failed.'
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
 
-      window.initMap = initMap;
+window.initMap = initMap;
+
   
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUQaOBIQIBCIfWQb3r8-8Vv1-XWLH_aOk&callback=initMap&libraries=places&v=weekly" defer></script>

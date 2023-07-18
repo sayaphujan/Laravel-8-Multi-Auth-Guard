@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Models\User;
+use App\Models\Customer;
 use App\Models\Price;
 use App\Models\Bank;
 use App\Models\Trans;
@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         //$this->middleware('auth');
         //$this->middleware('guest')->except('logout');
-        $this->tb_user = new User();
+        $this->tb_customer = new Customer();
         $this->tb_price = new Price();
         $this->tb_bank = new Bank();
         $this->tb_trans = new Trans();      
@@ -37,30 +37,17 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            // User is authenticated with the default 'web' guard
             $guard = Auth::user();
             $path = 'user';
-            // Perform actions for authenticated user
         } elseif (Auth::guard('admin')->check()) {
-            // User is authenticated with the 'admin' guard
             $guard = Auth::guard('admin')->user();
             $path = 'admin';
-            // Perform actions for authenticated admin
-        } elseif (Auth::guard('user')->check()) {
-            // User is authenticated with the 'user' guard
-            $guard = Auth::guard('user')->user();
-            $path = 'user';
-            // Perform actions for authenticated user (user guard)
-        } elseif (Auth::guard('owner')->check()) {
-            // User is authenticated with the 'owner' guard
-            $guard = Auth::guard('owner')->user();
-            $path = 'owner';
-            // Perform actions for authenticated owner
-        } elseif (Auth::guard('officer')->check()) {
-            // User is authenticated with the 'driver' guard
-            $guard = Auth::guard('officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+            $path = 'customer';
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
             $path = 'driver';
-            // Perform actions for authenticated driver
         } else {
             // User is not authenticated
             // Perform actions for unauthenticated user
@@ -98,17 +85,15 @@ class HomeController extends Controller
     
     public function userHome()
     {
-         if (Auth::check()) {
+        if (Auth::check()) {
             $guard = Auth::user();
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('Officer')->check()) {
-            $guard = Auth::guard('Officer')->user();
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
         } else {
             $this->middleware('guest')->except('logout');
         }

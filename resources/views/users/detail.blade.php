@@ -78,8 +78,7 @@ select[readonly] {
                                 <div class="col-md-6">
                                     <select name="level" class="form-control" id="level" aria-describedby="level" disabled readonlny>
                                         <option value="1" {{ $user->level == '1' ? 'selected' : ''}}>Admin</option>
-                                        <option value="2" {{ $user->level == '2' ? 'selected' : ''}}>Owner</option>
-                                        <option value="3" {{ $user->level == '3' ? 'selected' : ''}}>User</option>
+                                        <option value="3" {{ $user->level == '3' ? 'selected' : ''}}>Pelanggan</option>
                                         <option value="4" {{ $user->level == '4' ? 'selected' : ''}}>Petugas Pengiriman</option>
                                     </select>    
                                 </div>
@@ -110,7 +109,7 @@ select[readonly] {
                                         if($uri_segments[1] == 'profile'){
                                             $url = "profile";
                                         }else {
-                                            $url = "users";
+                                            $url = "customers";
                                         }
                                     }
                         @endphp
@@ -122,7 +121,7 @@ select[readonly] {
                                 <button type="button" class="btn btn-warning float-right">Kembali</button>                
                             </a>
                         @else     
-                            <a href="{{ route('users')}}">
+                            <a href="{{ route('customers')}}">
                                 <button type="button" class="btn btn-warning float-right">Kembali</button>                
                             </a>
                         @endif

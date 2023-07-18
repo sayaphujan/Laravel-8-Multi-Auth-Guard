@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2023 at 12:16 PM
+-- Generation Time: Jul 18, 2023 at 07:40 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -49,7 +49,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `fullname`, `name`, `email`, `email_verified_at`, `password`, `plain_password`, `phone_number`, `address`, `level`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin@mail.com', NULL, '$2y$10$eBCD1/YNrQtLTIcnfzE6gOCIWG4OjEehC2xipXR9tmbAxP.yHAZ.S', 'admin', '098765', 'Kabupaten Kendal', '1', '', 'k6JBxyENPRl6v1xxbX63sDz8wTA7YCpTM7kCTpmvkTUdJuPVbr1wmnymPS8K', '2022-10-22 15:58:43', '2023-07-16 18:27:41'),
+(1, 'admin', 'admin', 'admin@mail.com', NULL, '$2y$10$eBCD1/YNrQtLTIcnfzE6gOCIWG4OjEehC2xipXR9tmbAxP.yHAZ.S', 'admin', '098765', 'Kabupaten Kendal', '1', '202307181720download (1).jpg', 'XSdvI8gO2GA0Ckmox5XkBb5ZtcUPw1joo7MqnjIx216ccK0gYinJ7e32YSQP', '2022-10-22 15:58:43', '2023-07-18 10:20:24'),
 (56, 'alvina Rizqi', 'alvina3', 'alvina@gmail.com', NULL, '$2y$10$WaOQEabk85An4DEXJ.7/TeerVONulNTeriWjcsK37kIUB1ow/oXmi', '12345678', '78787', 'kendal', '1', '', 'CLyp42QxZwQn7DKS0gAUg595bj6AbNOsz2J1tR4f', NULL, '2023-07-16 17:49:09');
 
 -- --------------------------------------------------------
@@ -75,6 +75,88 @@ INSERT INTO `banks` (`bank_id`, `bank_name`, `bank_num`, `bank_own`, `created_at
 (1, 'BCA', '0989878998787', 'Pdam Kabupaten Kendal', '2022-10-26 06:05:03', '2022-10-26 06:05:03'),
 (2, 'Mandiri', '076543212123', 'Pdam Kabupaten Kendal', '2022-10-26 06:06:28', '2022-10-26 06:06:28'),
 (3, 'Syariah', '09999977656', 'Pdam Kabupaten Kendal', '2022-10-26 06:07:35', '2022-10-26 06:07:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `fullname` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `plain_password` varchar(255) NOT NULL,
+  `phone_number` varchar(13) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `level` varchar(30) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT 'default.png',
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `fullname`, `name`, `email`, `email_verified_at`, `password`, `plain_password`, `phone_number`, `address`, `level`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
+(11, 'User', 'user', 'user@mail.com', NULL, '$2y$10$lj5.zoCLbXNEhosBslePBuWdIU1D32sYMJaMI6NvV2gQBqqIqzDQa', 'user', '08888123456', 'Kendal', '3', '202307170129download.jpg', 'e7h6tWEE1jGX4EsM5jUH8m61fY6H5uu0qfVvONZ13iBAB7RKSB8bdVTfHSid', '2022-10-23 06:53:55', '2023-07-16 18:29:27'),
+(48, 'ddadad', 'coba', NULL, NULL, '$2y$10$QHGZbWZRJ0LD8fwDlVanX.p4Cg7eRmuAh95vmN3sHTquqBxkk1E/6', '12345678', NULL, NULL, '3', NULL, NULL, '2023-03-27 06:15:48', '2023-03-27 06:15:48'),
+(49, 'kevin toding', 'gilto', NULL, NULL, '$2y$10$PH/hGYH.YxgUDigg0XYIF.V8HnWFrhE6qaPfmGsAjdKsKGIcBuH2m', '12345678', NULL, NULL, '3', NULL, NULL, '2023-04-05 00:50:46', '2023-04-05 00:50:46'),
+(53, 'vanesia2', 'testusername', 'dasds@gmail.com', NULL, '$2y$10$oU5vH.drd6ZB/76Mk3bh/uQemxBIpTnOc76T8LVHQWhM82cD.2gRW', '123456789', '09999', 'dadsad', '3', NULL, NULL, NULL, '2023-04-09 19:27:25'),
+(54, 'bayu', 'bayu', 'bayu@gmail.com', NULL, '$2y$10$cacV95pPyp6i7N4a3UY0kOEyx/WDJ7d/3qhrTfvIUbPsj2ld6SG8W', '', NULL, NULL, '3', NULL, NULL, NULL, NULL),
+(57, 'chels chika', 'chika', 'chika@gmail.com', NULL, '$2y$10$TUTj7PMM77igw.XJTf9BxupSN/u7L5l8UWaeL7ECcdz6NKEBd6otG', '12345678', '0899999', 'jl. pahlawann', '3', 'images.jpeg', NULL, NULL, '2023-04-07 14:33:19'),
+(67, 'tasya', 'tasya', 'tasya@gmail.com', NULL, '$2y$10$HqxrKdtMOqWzpB5xnjrTFO5OotWcxErQdIhVkKJC/f6ONA73k6MPO', '12345', NULL, NULL, '3', 'default.png', NULL, '2023-05-27 07:30:40', '2023-05-27 07:30:40'),
+(68, 'aji', 'aji', 'aji@gmail.com', NULL, '$2y$10$5PE4bUWrxX8s4FV/xYF.aOq.7IDAAs/XQ63AdLQ7oG7sPZzelON32', '123', NULL, NULL, '3', 'default.png', NULL, '2023-05-27 08:05:26', '2023-05-27 08:05:26'),
+(69, 'Katon pratomo', 'Katon ', 'katon@gmail.com', NULL, '$2y$10$T5.320x1nJlwKOqXC2nntOmr//c/iLD5sA3FbzdLsBV/obW8gSD8C', '123', NULL, NULL, '3', 'default.png', NULL, '2023-06-25 11:37:28', '2023-06-25 11:37:28'),
+(70, 'aku', 'aku', 'aku@gmail.com', NULL, '$2y$10$VA11wqXmPsc4MS2egBkCTO6snmzHvw9fK7h4vnsW3gnnRM/mHsJne', '123', NULL, NULL, '3', 'default.png', NULL, '2023-06-26 09:07:55', '2023-06-26 09:07:55'),
+(73, 'subagio', 'subagio', 'subagio@gmail.com', NULL, '$2y$10$LR1L5/OQOoSkzmmY.Sdg9ukPmnDqoK6JZWL6aoAZ7Pi39DTvUsID2', 'bagio123', NULL, NULL, '3', 'default.png', NULL, '2023-06-26 09:14:01', '2023-06-26 09:14:01'),
+(74, 'testpta', 'testipta', 'testipta@gmail.com', NULL, '$2y$10$DFZ6qwyjvGCEbJWgo71sNOu.9HsZt/5W19N8gNdcN78mCN9.PdZLS', '123', NULL, NULL, '3', 'default.png', NULL, '2023-06-26 21:37:23', '2023-06-26 21:37:23'),
+(75, 'iqbal', 'iqbal', 'iqbal@gmail.com', NULL, '$2y$10$EYG3m1V3DCDM7tPItBxm9up.WQmfBAmyvTivh.8fimi2ViTw08mnW', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-09 04:38:20', '2023-07-09 04:38:20'),
+(76, 'halo', 'halo', 'halo@gmail.com', NULL, '$2y$10$auplwTQ3aWV9btJIbBb.nOtnEBZ1BrcaOLLNLSVbLkoSKhWOq7JAy', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-11 08:33:08', '2023-07-11 08:33:08'),
+(77, 'cobaah', 'cobaah', 'coba@gmail.com', NULL, '$2y$10$ZdeNRn7WZXOE0sIxsIQIee7PQiwnWmbWh0KUSfsTUVUZ76lWyLHbi', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-11 20:30:20', '2023-07-11 20:30:20'),
+(78, 'ayu', 'ayu', 'ayu@gmail.com', NULL, '$2y$10$z5uGRnpDZK71.yMGkfAlfu123g6n7Sr55KJYRwyKYWwFT0k2bVw4y', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-11 21:11:44', '2023-07-11 21:11:44'),
+(84, 'okey', 'okey', 'oke@mail.com', NULL, '$2y$10$BpjDpPXPvpmzVgdtKOOAiO4veBGJKg3Xu.F4GazXncbaI2Qlk5W8W', 'oke', '777777777', 'okey', '3', '', '202hrtMGKosNeQxxHIQiQ0VaT89Isw3rIB0yK6nG', '2023-07-18 09:59:21', '2023-07-18 10:01:51'),
+(85, 'ADMIN', 'ADMIN', 'ADMIN@mail.com', NULL, '$2y$10$.0aWsgnTplp20mgGP3FR3O/YUMJV6xeWdv558uJxepTjvuKLuTiE2', 'fyrazg3u1j', '098765', 'KABUPATEN KENDAL', '3', 'default.png', NULL, '2023-07-18 10:19:13', '2023-07-18 10:19:13'),
+(88, 'guest', '8908989890890', 'guest@mail.com', NULL, '$2y$10$hzAiReTzaEJTJhVaNmiv.uIJG2NnqbrtgMJuFo.Oj2gct87k1gXYG', '3uq0tmvax9', '8908989890890', 'ok', '3', 'default.png', NULL, '2023-07-18 10:29:55', '2023-07-18 10:29:55'),
+(89, 'mbuh', '8878789', 'mbuh@mail.com', NULL, '$2y$10$Yyyx8vsPMsVPpd39nDwzhOwj6FBUizjuSFQ5P9qEO3rSM9uIWjKqu', '6y7v04j1ih', '8878789', 'kjkoo', '3', 'default.png', NULL, '2023-07-18 10:32:56', '2023-07-18 10:32:56'),
+(90, 'shiva', 'shiva', 'shiva@mail.com', NULL, '$2y$10$wBV6llZ81KaXQCN/3wr.9OLQGOGBF9O3ivdu9Gi8e6yymEljhTQLa', '123', '', '', '3', '', NULL, '2023-07-18 10:39:17', '2023-07-18 10:39:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `drivers`
+--
+
+CREATE TABLE `drivers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `fullname` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `plain_password` varchar(255) NOT NULL,
+  `phone_number` varchar(13) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `level` varchar(30) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT 'default.png',
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `drivers`
+--
+
+INSERT INTO `drivers` (`id`, `fullname`, `name`, `email`, `email_verified_at`, `password`, `plain_password`, `phone_number`, `address`, `level`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
+(23, 'Driver1', 'DRV001', 'driver@mail.com', NULL, '$2y$10$nTvic7ztbErKoas6CzqnmuQg9Ju.pcwBO1wYEB7lL1LT6EZqTQSBS', 'driver', '0888123456', 'Kendal', '4', '', 'CLyp42QxZwQn7DKS0gAUg595bj6AbNOsz2J1tR4f', '2022-10-25 03:03:10', '2023-07-16 18:42:51'),
+(24, 'Driver2', 'DRV002', 'driver@test.com', NULL, '$2y$10$7L0bZrTPe0YjHDGqWmFOsuQkAh3GgWvWqBLNCwg9p9D15kiHKDqHG', 'driver', '0812123456', 'Kendal', '4', '', NULL, '2022-10-25 03:03:52', '2022-10-25 05:46:51'),
+(42, 'Rohman Mulyadi', 'DRV003', 'Mulyadi@gmail.com', NULL, '$2y$10$FtqASV.Q5HZZc.S71eJ9iOi7MZt6wqhzRkwLYWsTTB0NMax3GsLd2', '123', '086465661616', 'weleri kabupaten batang', '4', '202307181010202301111827index.jpg', 'di813dsIjxjbqazdW6mU4AfGBlwdzljXtvcuxio0nce3MWJhvR1LhLmdyU0N', '2023-01-11 01:03:51', '2023-07-18 03:10:34');
 
 -- --------------------------------------------------------
 
@@ -193,7 +275,15 @@ INSERT INTO `locs` (`loc_id`, `loc_address1`, `loc_address2`, `loc_lng`, `loc_la
 (100, 'KENDAL', 'bengkel D&D', '110.4381254', '-7.0051453', NULL, '2023-07-17 16:26:50', '2023-07-17 16:26:50'),
 (101, 'KENDAL', 'bengkel D&D', '110.4381254', '-7.0051453', NULL, '2023-07-17 16:29:02', '2023-07-17 16:29:02'),
 (102, 'Semarang', 'Kantor Layanan Shopee 24 jam', '110.43746021216428', '-7.005161273120946', NULL, '2023-07-18 01:47:42', '2023-07-18 01:47:42'),
-(103, 'semarang', 'Kantor Layanan Shopeee 24 jam', '110.4374628943733', '-7.005159942027553', NULL, '2023-07-18 01:49:48', '2023-07-18 01:49:48');
+(103, 'semarang', 'Kantor Layanan Shopeee 24 jam', '110.4374628943733', '-7.005159942027553', NULL, '2023-07-18 01:49:48', '2023-07-18 01:49:48'),
+(104, 'KABUPATEN KENDAL', 'zavin house', '109.6538802147499', '-6.915627069545666', NULL, '2023-07-18 10:19:13', '2023-07-18 10:19:13'),
+(105, 'kendal', 'batik putri eeffendi', '109.65374476319465', '-6.9152383159585815', NULL, '2023-07-18 10:22:43', '2023-07-18 10:22:43'),
+(106, 'kendal', 'batik putri eeffendi', '109.65374476319465', '-6.9152383159585815', NULL, '2023-07-18 10:23:27', '2023-07-18 10:23:27'),
+(107, 'kendal', 'batik putri eeffendi', '109.65374476319465', '-6.9152383159585815', NULL, '2023-07-18 10:24:28', '2023-07-18 10:24:28'),
+(108, 'kendal', 'batik putri eeffendi', '109.65374476319465', '-6.9152383159585815', NULL, '2023-07-18 10:26:19', '2023-07-18 10:26:19'),
+(109, 'kendal', 'batik putri eeffendi', '109.65374476319465', '-6.9152383159585815', NULL, '2023-07-18 10:26:55', '2023-07-18 10:26:55'),
+(110, 'ok', 'bengkel soekirno', '110.4382380527786', '-7.005038812513018', NULL, '2023-07-18 10:29:55', '2023-07-18 10:29:55'),
+(111, 'kjkoo', 'kokoko', '109.653713', '-6.9153729', NULL, '2023-07-18 10:32:56', '2023-07-18 10:32:56');
 
 -- --------------------------------------------------------
 
@@ -217,68 +307,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2021_04_30_133042_create_prices_table', 2),
 (6, '2021_04_30_133042_create_trans_table', 3),
 (7, '2021_04_30_133042_create_banks_table', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `officers`
---
-
-CREATE TABLE `officers` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `fullname` varchar(30) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `plain_password` varchar(255) NOT NULL,
-  `phone_number` varchar(13) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `level` varchar(30) DEFAULT NULL,
-  `photo` varchar(50) DEFAULT 'default.png',
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `officers`
---
-
-INSERT INTO `officers` (`id`, `fullname`, `name`, `email`, `email_verified_at`, `password`, `plain_password`, `phone_number`, `address`, `level`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(23, 'Driver1', 'DRV001', 'driver@mail.com', NULL, '$2y$10$nTvic7ztbErKoas6CzqnmuQg9Ju.pcwBO1wYEB7lL1LT6EZqTQSBS', 'driver', '0888123456', 'Kendal', '4', '', 'CLyp42QxZwQn7DKS0gAUg595bj6AbNOsz2J1tR4f', '2022-10-25 03:03:10', '2023-07-16 18:42:51'),
-(24, 'Driver2', 'DRV002', 'driver@test.com', NULL, '$2y$10$7L0bZrTPe0YjHDGqWmFOsuQkAh3GgWvWqBLNCwg9p9D15kiHKDqHG', 'driver', '0812123456', 'Kendal', '4', '', NULL, '2022-10-25 03:03:52', '2022-10-25 05:46:51'),
-(42, 'Rohman Mulyadi', 'DRV003', 'Mulyadi@gmail.com', NULL, '$2y$10$FtqASV.Q5HZZc.S71eJ9iOi7MZt6wqhzRkwLYWsTTB0NMax3GsLd2', '123', '086465661616', 'weleri kabupaten batang', '4', '202307181010202301111827index.jpg', 'di813dsIjxjbqazdW6mU4AfGBlwdzljXtvcuxio0nce3MWJhvR1LhLmdyU0N', '2023-01-11 01:03:51', '2023-07-18 03:10:34');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `owners`
---
-
-CREATE TABLE `owners` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `fullname` varchar(30) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `plain_password` varchar(255) NOT NULL,
-  `phone_number` varchar(13) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `level` varchar(30) DEFAULT NULL,
-  `photo` varchar(50) DEFAULT 'default.png',
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `owners`
---
-
-INSERT INTO `owners` (`id`, `fullname`, `name`, `email`, `email_verified_at`, `password`, `plain_password`, `phone_number`, `address`, `level`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(10, 'Owner', 'owner', 'owner@mail.com', NULL, '$2y$10$dgopLmc.jezBOMoMEYZLIeanTO4UEpoH5xuaoxcouWmvntdyQn3b.', 'owner', '9898978987987', 'Kendal', '2', '202307181014download (1).jpg', 'uZ1peazvy5MvgnCVDRgCLrDbo18cxYLJLqwC7pnv', '2022-10-23 06:51:40', '2023-07-18 03:14:55');
 
 -- --------------------------------------------------------
 
@@ -342,62 +370,23 @@ INSERT INTO `trans` (`trans_id`, `trans_category`, `trans_destination`, `trans_p
 (92, 'Niaga', 'Dalam Kota', '087315151313', 'mantap', '200000', '5000', '0', '200000', 'Tunai', '1', NULL, '0', '0', '76', '42', '1', '92', '6e37808a-e', '2023-07-11 14:03:24', '2023-07-11 14:03:52'),
 (93, 'Niaga', 'Dalam Kota', '0856315153153', 'oke', '200000', '5000', '0', '200000', 'Tunai', '0', NULL, '0', '0', '77', '0', '1', '93', '4c6383f7-6', '2023-07-12 01:31:23', '2023-07-12 01:31:23'),
 (94, 'Pribadi Rumah Tangga', 'Dalam Kota', '08521561661', 'mohon cepat kirim', '200000', '5000', '0', '200000', '1', '1', 'download3.jpeg', '0', '0', '78', '42', '1', '94', '8afc0341-f', '2023-07-12 02:25:23', '2023-07-12 02:30:32'),
-(95, 'Pribadi Rumah Tangga', 'Dalam Kota', '123456', 'abc', '200000', '5000', '0', '200000', '1', '0', '202307150552353419642_10160907180752662_51053612681053195_n.jpg', '0', '0', '11', '0', '1', '95', 'dufy0c1bhq', '2023-07-14 22:51:44', '2023-07-14 22:52:16'),
-(96, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'bengkel', '350000', '8000', '0', '350000', '1', '0', NULL, '0', '0', '11', '0', '2', '96', 'w3l9a2pbgu', '2023-07-17 16:15:05', '2023-07-17 16:15:05'),
-(97, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'bengkel', '350000', '8000', '0', '350000', '1', '0', NULL, '0', '0', '11', '0', '2', '97', 'w3l9a2pbgu', '2023-07-17 16:16:06', '2023-07-17 16:16:06'),
+(95, 'Pribadi Rumah Tangga', 'Dalam Kota', '123456', 'abc', '200000', '5000', '0', '200000', '1', '1', '202307150552353419642_10160907180752662_51053612681053195_n.jpg', '0', '0', '11', '42', '1', '95', 'dufy0c1bhq', '2023-07-14 22:51:44', '2023-07-18 10:08:50'),
+(96, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'bengkel', '350000', '8000', '0', '350000', '1', '1', NULL, '0', '0', '11', '24', '2', '96', 'w3l9a2pbgu', '2023-07-17 16:15:05', '2023-07-18 10:09:38'),
+(97, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'bengkel', '350000', '8000', '0', '350000', '1', '1', NULL, '0', '0', '11', '24', '2', '97', 'w3l9a2pbgu', '2023-07-17 16:16:06', '2023-07-18 10:09:38'),
 (98, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'ok', '200000', '5000', '0', '200000', '1', '1', '202307180836347383162_146617581720556_7501766419534526567_n.jpg', '0', '0', '11', '42', '1', '98', '6n23ge47mr', '2023-07-17 16:24:34', '2023-07-18 01:40:26'),
 (99, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'ok', '200000', '5000', '0', '200000', '1', '1', '202307180836347383162_146617581720556_7501766419534526567_n.jpg', '0', '0', '11', '42', '1', '99', '6n23ge47mr', '2023-07-17 16:26:07', '2023-07-18 01:40:26'),
 (100, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'ok', '200000', '5000', '0', '200000', '1', '1', '202307180836347383162_146617581720556_7501766419534526567_n.jpg', '0', '0', '11', '42', '1', '100', '6n23ge47mr', '2023-07-17 16:26:50', '2023-07-18 01:40:26'),
 (101, 'Pribadi Rumah Tangga', 'Dalam Kota', '08888123456', 'ok', '200000', '5000', '0', '200000', '1', '1', '202307180836347383162_146617581720556_7501766419534526567_n.jpg', '1', '0', '11', '42', '1', '101', '6n23ge47mr', '2023-07-17 16:29:02', '2023-07-18 03:04:32'),
-(102, 'Pribadi Rumah Tangga', 'Dalam Kota', '09999999', 'ok', '350000', '8000', '0', '350000', '2', '0', NULL, '0', '0', '11', '0', '2', '102', 'prmlawh67b', '2023-07-18 01:47:42', '2023-07-18 01:47:42'),
-(103, 'Pribadi Rumah Tangga', 'Dalam Kota', '777', 'ok', '200000', '5000', '0', '200000', '2', '2', '202307180850353419642_10160907180752662_51053612681053195_n.jpg', '0', '0', '11', '0', '1', '103', 'tb1jcsxu4a', '2023-07-18 01:49:48', '2023-07-18 01:51:21');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `fullname` varchar(30) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `plain_password` varchar(255) NOT NULL,
-  `phone_number` varchar(13) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `level` varchar(30) DEFAULT NULL,
-  `photo` varchar(50) DEFAULT 'default.png',
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `fullname`, `name`, `email`, `email_verified_at`, `password`, `plain_password`, `phone_number`, `address`, `level`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(11, 'User', 'user', 'user@mail.com', NULL, '$2y$10$lj5.zoCLbXNEhosBslePBuWdIU1D32sYMJaMI6NvV2gQBqqIqzDQa', 'user', '08888123456', 'Kendal', '3', '202307170129download.jpg', 'e7h6tWEE1jGX4EsM5jUH8m61fY6H5uu0qfVvONZ13iBAB7RKSB8bdVTfHSid', '2022-10-23 06:53:55', '2023-07-16 18:29:27'),
-(46, 'joe naufal', 'joe', NULL, NULL, '$2y$10$kBefsmbJvKXEYyV3ZimdLOW7ubGuFHm/J0M10P9WYjU5H4B4VMeum', '123', NULL, NULL, '3', NULL, NULL, '2023-01-11 18:23:20', '2023-01-11 18:23:20'),
-(47, 'suwarno', 'suwarno', NULL, NULL, '$2y$10$fsokWOEwF7BJRDXeCVXCBuwqlvUG8WWt5V7YyHvNsD9Yz6Vwn8bKi', '123', NULL, NULL, '3', NULL, NULL, '2023-01-17 13:45:52', '2023-01-17 13:45:52'),
-(48, 'ddadad', 'coba', NULL, NULL, '$2y$10$QHGZbWZRJ0LD8fwDlVanX.p4Cg7eRmuAh95vmN3sHTquqBxkk1E/6', '12345678', NULL, NULL, '3', NULL, NULL, '2023-03-27 06:15:48', '2023-03-27 06:15:48'),
-(49, 'kevin toding', 'gilto', NULL, NULL, '$2y$10$PH/hGYH.YxgUDigg0XYIF.V8HnWFrhE6qaPfmGsAjdKsKGIcBuH2m', '12345678', NULL, NULL, '3', NULL, NULL, '2023-04-05 00:50:46', '2023-04-05 00:50:46'),
-(53, 'vanesia2', 'testusername', 'dasds@gmail.com', NULL, '$2y$10$oU5vH.drd6ZB/76Mk3bh/uQemxBIpTnOc76T8LVHQWhM82cD.2gRW', '123456789', '09999', 'dadsad', '3', NULL, NULL, NULL, '2023-04-09 19:27:25'),
-(54, 'bayu', 'bayu', 'bayu@gmail.com', NULL, '$2y$10$cacV95pPyp6i7N4a3UY0kOEyx/WDJ7d/3qhrTfvIUbPsj2ld6SG8W', '', NULL, NULL, '3', NULL, NULL, NULL, NULL),
-(57, 'chels chika', 'chika', 'chika@gmail.com', NULL, '$2y$10$TUTj7PMM77igw.XJTf9BxupSN/u7L5l8UWaeL7ECcdz6NKEBd6otG', '12345678', '0899999', 'jl. pahlawann', '3', 'images.jpeg', NULL, NULL, '2023-04-07 14:33:19'),
-(67, 'tasya', 'tasya', 'tasya@gmail.com', NULL, '$2y$10$HqxrKdtMOqWzpB5xnjrTFO5OotWcxErQdIhVkKJC/f6ONA73k6MPO', '12345', NULL, NULL, '3', 'default.png', NULL, '2023-05-27 07:30:40', '2023-05-27 07:30:40'),
-(68, 'aji', 'aji', 'aji@gmail.com', NULL, '$2y$10$5PE4bUWrxX8s4FV/xYF.aOq.7IDAAs/XQ63AdLQ7oG7sPZzelON32', '123', NULL, NULL, '3', 'default.png', NULL, '2023-05-27 08:05:26', '2023-05-27 08:05:26'),
-(69, 'Katon pratomo', 'Katon ', 'katon@gmail.com', NULL, '$2y$10$T5.320x1nJlwKOqXC2nntOmr//c/iLD5sA3FbzdLsBV/obW8gSD8C', '123', NULL, NULL, '3', 'default.png', NULL, '2023-06-25 11:37:28', '2023-06-25 11:37:28'),
-(70, 'aku', 'aku', 'aku@gmail.com', NULL, '$2y$10$VA11wqXmPsc4MS2egBkCTO6snmzHvw9fK7h4vnsW3gnnRM/mHsJne', '123', NULL, NULL, '3', 'default.png', NULL, '2023-06-26 09:07:55', '2023-06-26 09:07:55'),
-(73, 'subagio', 'subagio', 'subagio@gmail.com', NULL, '$2y$10$LR1L5/OQOoSkzmmY.Sdg9ukPmnDqoK6JZWL6aoAZ7Pi39DTvUsID2', 'bagio123', NULL, NULL, '3', 'default.png', NULL, '2023-06-26 09:14:01', '2023-06-26 09:14:01'),
-(74, 'testpta', 'testipta', 'testipta@gmail.com', NULL, '$2y$10$DFZ6qwyjvGCEbJWgo71sNOu.9HsZt/5W19N8gNdcN78mCN9.PdZLS', '123', NULL, NULL, '3', 'default.png', NULL, '2023-06-26 21:37:23', '2023-06-26 21:37:23'),
-(75, 'iqbal', 'iqbal', 'iqbal@gmail.com', NULL, '$2y$10$EYG3m1V3DCDM7tPItBxm9up.WQmfBAmyvTivh.8fimi2ViTw08mnW', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-09 04:38:20', '2023-07-09 04:38:20'),
-(76, 'halo', 'halo', 'halo@gmail.com', NULL, '$2y$10$auplwTQ3aWV9btJIbBb.nOtnEBZ1BrcaOLLNLSVbLkoSKhWOq7JAy', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-11 08:33:08', '2023-07-11 08:33:08'),
-(77, 'cobaah', 'cobaah', 'coba@gmail.com', NULL, '$2y$10$ZdeNRn7WZXOE0sIxsIQIee7PQiwnWmbWh0KUSfsTUVUZ76lWyLHbi', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-11 20:30:20', '2023-07-11 20:30:20'),
-(78, 'ayu', 'ayu', 'ayu@gmail.com', NULL, '$2y$10$z5uGRnpDZK71.yMGkfAlfu123g6n7Sr55KJYRwyKYWwFT0k2bVw4y', '123', NULL, NULL, '3', 'default.png', NULL, '2023-07-11 21:11:44', '2023-07-11 21:11:44');
+(102, 'Pribadi Rumah Tangga', 'Dalam Kota', '09999999', 'ok', '350000', '8000', '0', '350000', '2', '1', NULL, '0', '0', '11', '23', '2', '102', 'prmlawh67b', '2023-07-18 01:47:42', '2023-07-18 10:10:10'),
+(103, 'Pribadi Rumah Tangga', 'Dalam Kota', '777', 'ok', '200000', '5000', '0', '200000', '2', '2', '202307180850353419642_10160907180752662_51053612681053195_n.jpg', '0', '0', '11', '0', '1', '103', 'tb1jcsxu4a', '2023-07-18 01:49:48', '2023-07-18 01:51:21'),
+(104, 'Niaga', 'Dalam Kota', '098765', 'ok', '200000', '5000', '0', '200000', 'Tunai', '1', NULL, '0', '0', '85', '24', '1', '104', 'fyrazg3u1j', '2023-07-18 10:19:13', '2023-07-18 10:19:31'),
+(105, 'Niaga', 'Dalam Kota', '9879878979', 'ok', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '86', '0', '1', '105', 'vpocfr3wad', '2023-07-18 10:22:43', '2023-07-18 10:22:43'),
+(106, 'Niaga', 'Dalam Kota', '9879878979', 'ok', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '86', '0', '1', '106', 'vpocfr3wad', '2023-07-18 10:23:27', '2023-07-18 10:23:27'),
+(107, 'Niaga', 'Dalam Kota', '9879878979', 'ok', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '86', '0', '1', '107', 'vpocfr3wad', '2023-07-18 10:24:28', '2023-07-18 10:24:28'),
+(108, 'Niaga', 'Dalam Kota', '9879878979', 'ok', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '86', '0', '1', '108', 'vpocfr3wad', '2023-07-18 10:26:19', '2023-07-18 10:26:19'),
+(109, 'Niaga', 'Dalam Kota', '9879878979', 'ok', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '86', '0', '1', '109', 'vpocfr3wad', '2023-07-18 10:26:55', '2023-07-18 10:26:55'),
+(110, 'Niaga', 'Dalam Kota', '8908989890890', 'ok', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '88', '0', '1', '110', '3uq0tmvax9', '2023-07-18 10:29:55', '2023-07-18 10:29:55'),
+(111, 'Niaga', 'Dalam Kota', '8878789', 'koko', '200000', '5000', '0', '200000', '2', '0', NULL, '0', '0', '89', '0', '1', '111', '6y7v04j1ih', '2023-07-18 10:32:56', '2023-07-18 10:32:56');
 
 --
 -- Indexes for dumped tables
@@ -418,6 +407,22 @@ ALTER TABLE `banks`
   ADD PRIMARY KEY (`bank_id`);
 
 --
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_name_unique` (`name`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `drivers`
+--
+ALTER TABLE `drivers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_name_unique` (`name`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
 -- Indexes for table `locs`
 --
 ALTER TABLE `locs`
@@ -428,22 +433,6 @@ ALTER TABLE `locs`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `officers`
---
-ALTER TABLE `officers`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_name_unique` (`name`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- Indexes for table `owners`
---
-ALTER TABLE `owners`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_name_unique` (`name`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- Indexes for table `prices`
@@ -458,14 +447,6 @@ ALTER TABLE `trans`
   ADD PRIMARY KEY (`trans_id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_name_unique` (`name`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -473,19 +454,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `banks`
 --
 ALTER TABLE `banks`
-  MODIFY `bank_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `bank_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+
+--
+-- AUTO_INCREMENT for table `drivers`
+--
+ALTER TABLE `drivers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `locs`
 --
 ALTER TABLE `locs`
-  MODIFY `loc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `loc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -494,34 +487,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `officers`
---
-ALTER TABLE `officers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
-
---
--- AUTO_INCREMENT for table `owners`
---
-ALTER TABLE `owners`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
-
---
 -- AUTO_INCREMENT for table `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `trans`
 --
 ALTER TABLE `trans`
-  MODIFY `trans_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `trans_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

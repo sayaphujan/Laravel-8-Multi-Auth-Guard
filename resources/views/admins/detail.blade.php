@@ -80,8 +80,7 @@ select[readonly] {
                                 <div class="col-md-6">
                                     <select name="level" class="form-control" id="level" aria-describedby="level" disabled readonlny>
                                         <option value="1" {{ $admin->level == '1' ? 'selected' : ''}}>Admin</option>
-                                        <option value="2" {{ $admin->level == '2' ? 'selected' : ''}}>Owner</option>
-                                        <option value="3" {{ $admin->level == '3' ? 'selected' : ''}}>User</option>
+                                        <option value="3" {{ $admin->level == '3' ? 'selected' : ''}}>Pelanggan</option>
                                         <option value="4" {{ $admin->level == '4' ? 'selected' : ''}}>Driver</option>
                                     </select>    
                                 </div>

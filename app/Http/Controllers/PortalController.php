@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
 use Carbon\Carbon as CarbonDate;
-use App\Models\User;
+use App\Models\Customer;
 use App\Models\Price;
 use App\Models\Trans;
 use App\Models\Bank;
@@ -20,7 +20,7 @@ class PortalController extends Controller
     use AuthenticatesUsers;
 
     protected $guard;
-    protected $tb_user;
+    protected $tb_customer;
     protected $tb_price;
     protected $tb_trans;
     protected $tb_bank;
@@ -28,7 +28,7 @@ class PortalController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->tb_user = new User();
+        $this->tb_customer = new Customer();
         $this->tb_price = new Price(); 
         $this->tb_trans = new Trans(); 
         $this->tb_bank = new Bank(); 
@@ -41,13 +41,11 @@ class PortalController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
-        }else{
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
+        } else {
             $this->middleware('guest')->except('logout');
         }
 
@@ -90,27 +88,24 @@ class PortalController extends Controller
             
         } elseif (Auth::guard('admin')->check()) {
             $guard = Auth::guard('admin')->user();
-        } elseif (Auth::guard('user')->check()) {
-            $guard = Auth::guard('user')->user();
-        } elseif (Auth::guard('owner')->check()) {
-            $guard = Auth::guard('owner')->user();
-        } elseif (Auth::guard('officer')->check()) {
-            $guard = Auth::guard('officer')->user();
-        }else{
+        } elseif (Auth::guard('customer')->check()) {
+            $guard = Auth::guard('customer')->user();
+        } elseif (Auth::guard('driver')->check()) {
+            $guard = Auth::guard('driver')->user();
+        } else {
             $this->middleware('guest')->except('logout');
         }
 
-        $validator = $this->isvalid($request);
+        //$validator = $this->isvalid($request);
 
         $data = $request->toArray();
 
-        if ($validator->fails())
+        /*if ($validator->fails())
         {
             return back()->withInput()->withErrors($validator->messages());
-            //return redirect()->route('/')->with('error', $validator->messages());
         }
         else
-        {
+        {*/
         
             $data['photo'] = null;
 
@@ -171,13 +166,13 @@ class PortalController extends Controller
 
             $trans = $this->tb_trans->store_trans($data_trans);
 
-        }
+        //}
 
         if($trans)
         {
-            $check = User::where('name','=',$name)->get()->toArray();
+            $check = Customer::where('name','=',$name)->get()->toArray();
             $checkdata = $check[0];
-            if(Auth::guard('user')->attempt(array('name' => $checkdata['name'], 'password' => $checkdata['plain_password'])))
+            if(Auth::guard('customer')->attempt(array('name' => $checkdata['name'], 'password' => $checkdata['plain_password'])))
             {
                 if ($guard->level > 0) {
                    $request->session()->put('level',$guard->level);

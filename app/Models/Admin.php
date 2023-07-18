@@ -74,7 +74,7 @@ class Admin extends Authenticatable
 
     public function store($request){
 
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
 
         //$request = $request->toArray();
 

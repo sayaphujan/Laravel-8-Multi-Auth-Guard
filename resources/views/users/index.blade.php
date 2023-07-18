@@ -47,8 +47,8 @@
                     <div class="col-sm-12 col-md-4">
                       
                         @if($guard->level == 1)
-                          <a class="btn btn-outline-primary btn-block" href="{{ route('users.create') }}">
-                            <i class="fa fa-plus"></i>  Tambah Data Pengguna
+                          <a class="btn btn-outline-primary btn-block" href="{{ route('customers.create') }}">
+                            <i class="fa fa-plus"></i>  Tambah Data Pelanggan
                           </a>
                         @endif
                     </div>
@@ -64,11 +64,11 @@
                               <tr>
                                 <th class="sorting">No</th>
                                 <th class="sorting">Nama Lengkap</th>
-                                <th class="sorting">Username</th>
-                                <!--<th class="sorting">Email</th>
+                                <!--<th class="sorting">Username</th>
+                                <th >Hak Akses</th>-->
+                                <th class="sorting">Email</th>
                                 <th class="sorting">No. Telepon</th>
-                                <th class="sorting">Alamat</th>-->
-                                <th >Hak Akses</th>
+                                <th class="sorting">Alamat</th>
                                 <th>Action</th>
                               </tr> 
                             </thead>
@@ -130,7 +130,7 @@
         "autoWidth": false,
         "processing": true,
         "serverSide": true,
-        ajax: "{{ route('users') }}",
+        ajax: "{{ route('customers') }}",
         responsive: {
           details: {
             type: 'column'
@@ -142,11 +142,11 @@
             //},name: 'id'},
             {data: 'id', name: 'id'},
             {data: 'fullname', name: 'fullname'},
-            {data: 'name', name: 'name'},
-            //{data: 'email', name: 'email'},
-            //{data: 'phone_number', name: 'phone_number'},
-            //{data: 'address', name: 'address'},
-            {data: 'level', render: function ( data, type, row, meta ) {
+            //{data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'phone_number', name: 'phone_number'},
+            {data: 'address', name: 'address'},
+            /*{data: 'level', render: function ( data, type, row, meta ) {
                 if(data == 'ADMIN')
                 {
                     return '<span class="badge bg-danger">'+data+'</span>';    
@@ -159,13 +159,13 @@
                 {
                     return '<span class="badge bg-success">'+data+'</span>';    
                 }               
-            }, name: 'level', orderable: false, searchable: false},       
+            }, name: 'level', orderable: false, searchable: false},       */
             {data: 'action', render: function ( data, type, row, meta ) {
               if(isAdmin == '1'){
                 return  '<div style="text-align: center">' + 
-                          '<a class="Edit" href="users/edit/'+row.id+'" style="color:#007bff"><i class="fas fa-pen" title="Edit"></i></a> &nbsp; ' + 
-                          '<a class="delete" href="users/destroy/'+row.id+'" onclick="return confirm(\'Apakah yakin akan menghapus akun @'+row.name+'\')" style="color:#dc3545"><i class="fas fa-trash" title="Hapus"></i></a> &nbsp; ' + 
-                          '<a class="show" href="users/show/'+row.id+'" style="color:#17a2b8"><i class="fas fa-eye" title="Detail"></i></a> &nbsp;</div>';    
+                          '<a class="Edit" href="customers/edit/'+row.id+'" style="color:#007bff"><i class="fas fa-pen" title="Edit"></i></a> &nbsp; ' + 
+                          '<a class="delete" href="customers/destroy/'+row.id+'" onclick="return confirm(\'Apakah yakin akan menghapus akun @'+row.name+'\')" style="color:#dc3545"><i class="fas fa-trash" title="Hapus"></i></a> &nbsp; ' + 
+                          '<a class="show" href="customers/show/'+row.id+'" style="color:#17a2b8"><i class="fas fa-eye" title="Detail"></i></a> &nbsp;</div>';    
               }else{
                 return '<div><i class="fas fa-pen" title="Edit"></i>&nbsp;<i class="fas fa-trash" title="Hapus"></i>&nbsp;<i class="fas fa-eye" title="Detail"></i></div>';
               }

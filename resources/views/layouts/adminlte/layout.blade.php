@@ -267,15 +267,7 @@ select[readonly] {
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('/owners') }}" class="nav-link">
-                <i class="nav-icon fas fa-blind"></i>
-                <p>
-                  Manajemen
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ url('/officers') }}" class="nav-link">
+              <a href="{{ url('/drivers') }}" class="nav-link">
                 <i class="nav-icon fas fa-street-view"></i>
                 <p>
                   Petugas Pengiriman
@@ -283,10 +275,10 @@ select[readonly] {
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('/users') }}" class="nav-link">
+              <a href="{{ url('/customers') }}" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
-                  Pengguna
+                  Pelanggan
                 </p>
               </a>
             </li>

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use DataTables;
 use Auth;
 use Session;
-use App\Models\User;
+use App\Models\Customer;
 use Carbon\Carbon;
 
 class Trans extends Authenticatable
@@ -49,10 +49,10 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_user($search, $id){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
-                        ->where('users.id',$id)
+                        ->where('customers.id',$id)
                         ->get(); 
 
         return $data;
@@ -60,7 +60,7 @@ class Trans extends Authenticatable
     
     public function select_all_ajax_driver($search, $id){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->where('driver_id',$id)
                         ->get(); 
 
@@ -69,7 +69,7 @@ class Trans extends Authenticatable
     
     public function select_all_ajax($search){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->get(); 
@@ -79,12 +79,12 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_paid_user($search,$id){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.payment_photo','!=','')
                         ->orWhere('trans.payment','=', 'Tunai')
-                        ->where('users.id',$id)
+                        ->where('customers.id',$id)
                         ->get(); 
 
         return $data;
@@ -92,7 +92,7 @@ class Trans extends Authenticatable
     
     public function select_all_ajax_paid($search){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.payment_photo','!=','')
@@ -104,12 +104,12 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_unpaid_user($search, $id){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.payment_photo','=', null)
                         ->where('trans.payment','!=', 'Tunai')
-                        ->where('users.id',$id)
+                        ->where('customers.id',$id)
                         ->get(); 
 //echo $data;
         return $data;
@@ -117,7 +117,7 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_unpaid($search){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.payment_photo','=' ,null)
@@ -129,13 +129,13 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_unverified_user($search, $id){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.payment','!=','Tunai')
                         ->where('trans.payment_photo','!=','')
                         ->where('trans.payment_status','=','0')
-                        ->where('users.id',$id)
+                        ->where('customers.id',$id)
                         ->get(); 
 
         return $data;
@@ -143,7 +143,7 @@ class Trans extends Authenticatable
     
     public function select_all_ajax_unverified($search){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.payment','!=','Tunai')
@@ -155,7 +155,7 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_sent($search){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.trans_delivery','=','1')
@@ -167,7 +167,7 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_unsent($search){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.trans_delivery','=','0')
@@ -178,7 +178,7 @@ class Trans extends Authenticatable
     
     public function select_all_ajax_sent_driver($search, $user){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->where('trans.trans_delivery','=','1')
                         ->where('driver_id', $user)
                         ->get(); 
@@ -189,7 +189,7 @@ class Trans extends Authenticatable
 
     public function select_all_ajax_unsent_driver($search, $user){
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->where('trans.trans_delivery','=','0')
                         ->where('driver_id', $user)
                         ->get(); 
@@ -205,7 +205,7 @@ class Trans extends Authenticatable
     public function select_join($id)
     {
         $data = DB::table('trans')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->join('locs','trans.loc_id','=','locs.loc_id')
                         ->where('trans.order_id','=',$id)
@@ -218,7 +218,7 @@ class Trans extends Authenticatable
     public function select_kurir($id)
     {
         $data = DB::table('trans')
-                        ->join('users','trans.driver_id','=','users.id')
+                        ->join('customers','trans.driver_id','=','customers.id')
                         ->where('trans.order_id','=',$id)
                         ->first(); 
 
@@ -236,7 +236,7 @@ class Trans extends Authenticatable
     {
         $checkdata = null;
 
-        $udata = User::where('name','=',$data['name'])->get()->toArray();
+        $udata = Customer::where('name','=',$data['name'])->get()->toArray();
 
         //dd($udata[0]);
         if(!empty($udata) || $udata != null){
@@ -247,7 +247,7 @@ class Trans extends Authenticatable
         else
         {
             //dd($data);
-           $user = User::create($data);
+           $user = Customer::create($data);
            $uid = $user->id;
         }
         return $uid;
@@ -256,7 +256,7 @@ class Trans extends Authenticatable
     public function store_cust($data)
     {
 
-        $cust = Cust::create($data);
+        $cust = Customer::create($data);
                 //dd($cust->id);
         return $cust->id;
     }
@@ -436,7 +436,7 @@ class Trans extends Authenticatable
         $end    = Carbon::createFromFormat('d/m/Y', $to);
         
          $data = Trans::select ('*')
-                        ->join('users','trans.user_id','=','users.id')
+                        ->join('customers','trans.user_id','=','customers.id')
                         ->leftjoin('banks','trans.payment','=','banks.bank_id')
                         ->whereBetween('trans.created_at', [$start, $end])
                         ->get();

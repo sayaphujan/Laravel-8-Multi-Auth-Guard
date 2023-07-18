@@ -18,7 +18,7 @@ return [
         //'passwords' => 'users',
 
         'guard' => 'api',
-        'passwords' => 'users',
+        'passwords' => 'customers',
     ],
 
     /*
@@ -46,7 +46,7 @@ return [
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'customers',
             'hash' => true,
         ],
 
@@ -55,19 +55,14 @@ return [
             'provider' => 'admins',
         ],
 
-        'user' => [
+        'customer' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'customers',
         ],
 
-        'officer' => [
+        'driver' => [
             'driver' => 'session',
-            'provider' => 'officers',
-        ],
-
-        'owner' => [
-            'driver' => 'session',
-            'provider' => 'owners',
+            'provider' => 'drivers',
         ],
     ],
 
@@ -90,9 +85,9 @@ return [
 
 
     'providers' => [
-        'users' => [
+        'customers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Customer::class,
         ],
 
         'admins' => [
@@ -100,14 +95,9 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
-        'officers' => [
+        'drivers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Officer::class,
-        ],
-
-        'owners' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Owner::class,
+            'model' => App\Models\Driver::class,
         ],
     ],
 
@@ -127,8 +117,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'customers' => [
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
